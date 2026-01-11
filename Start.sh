@@ -10,8 +10,8 @@ sudo docker run -it --rm --name windows \
   -p 8006:8006 \
   -p 3389:3389 \
   -e VERSION="win11" \
-  -e RAM_SIZE="8G" \
-  -e CPU_CORES="4" \
+  -e RAM_SIZE="7G" \
+  -e CPU_CORES="3" \
   -e DISK_SIZE="64G" \
   -e USERNAME="Docker" \
   -e PASSWORD="admin123" \
