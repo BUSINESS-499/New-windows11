@@ -1,11 +1,16 @@
 #!/bin/bash
-# Victory Script - Pinggy Version (No Card, No TV Login)
+# Victory Script - Playit.gg Version (No Credit Card, No TV Login)
 
 # 1. Setup Storage
 mkdir -p /workspaces/windows-storage
 
-# 2. Start Windows 11 in the background
-# Using 35G to prevent crashing
+# 2. Install Playit.gg
+curl -SsL https://playit-cloud.github.io/ppa/key.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/playit.gpg >/dev/null
+echo "deb [signed-by=/etc/apt/trusted.gpg.d/playit.gpg] https://playit-cloud.github.io/ppa/data ./ " | sudo tee /etc/apt/sources.list.d/playit.list
+sudo apt update && sudo apt install playit -y
+
+# 3. Start Windows 11
+# Disk 35G = No crash / RAM 7G = Fast
 sudo docker run -d --name windows \
   --device=/dev/kvm \
   --cap-add NET_ADMIN \
@@ -20,7 +25,5 @@ sudo docker run -d --name windows \
   -v /workspaces/windows-storage:/storage \
   dockurr/windows
 
-# 3. Create the Tunnel (This provides your TV connection)
-echo "🚀 Creating your TV connection... Please wait."
-sleep 10
-ssh -p 443 -R0:localhost:3389 a.pinggy.io
+# 4. Launch Playit
+playit
