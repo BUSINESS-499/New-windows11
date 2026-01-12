@@ -1,5 +1,5 @@
 #!/bin/bash
-# Victory Script - Playit.gg Version (No Credit Card, No TV Login)
+# Victory Script - Playit.gg Version (Permanent Link + Email Verified)
 
 # 1. Setup Storage
 mkdir -p /workspaces/windows-storage
@@ -10,7 +10,6 @@ echo "deb [signed-by=/etc/apt/trusted.gpg.d/playit.gpg] https://playit-cloud.git
 sudo apt update && sudo apt install playit -y
 
 # 3. Start Windows 11
-# Disk 35G = No crash / RAM 7G = Fast
 sudo docker run -d --name windows \
   --device=/dev/kvm \
   --cap-add NET_ADMIN \
@@ -25,5 +24,6 @@ sudo docker run -d --name windows \
   -v /workspaces/windows-storage:/storage \
   dockurr/windows
 
-# 4. Launch Playit
-playit
+# 4. Launch Playit Setup
+echo "🔗 Click the link below to link your email and get your permanent address!"
+playit setup
